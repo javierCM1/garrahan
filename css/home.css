@@ -128,7 +128,14 @@
 .link-secu {
     margin: 10px;
     color: #fff;
+    text-decoration: none;
+    
 }
+
+.link-secu:hover {
+    color: #fff;
+}
+
 
 .logo {
     max-height: 80px;
@@ -258,5 +265,29 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+
+}
+
+.con-redes {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+/* Estilo para centrar el logo y el buscador en resoluciones pequeñas */
+@media (max-width: 630px) {
+    .container.my-3 .row {
+        justify-content: center !important; /* Centrar los elementos en la fila */
+        text-align: center; /* Asegurar que los elementos estén centrados */
+    }
+
+   .conten-ink {
+     display: none;
+   }
+
+   .con-redes {
+     display: flex;
+     justify-content: center;
+   }
 
 }
