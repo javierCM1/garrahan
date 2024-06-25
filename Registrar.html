@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Garrahan - Registrarse</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .full-height {
+            height: 100vh;
+        }
+
+        .form-container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .con-form {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dss d-flex align-items-center justify-content-center full-height">
+        <div class="con-form">
+            <div class="form-container">
+                <h2 class="text-center">Registrarse</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerDni">Número de Documento</label>
+                        <input type="text" class="form-control" id="registerDni" placeholder="Ingrese su número de documento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">Nombre</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="Ingrese su nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Apellido</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Ingrese su apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="birthDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" placeholder="Ingrese su correo electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Contraseña</label>
+                        <input type="password" class="form-control" id="registerPassword" placeholder="Ingrese su contraseña" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirmar Contraseña</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme su contraseña" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+                </form>
+                <p class="text-center mt-3">¿Ya tienes una cuenta? <a href="inicia-sesion.html">Inicia sesión aquí</a></p>
+            </div>
+        </div>
+    </div>
+   <script src="/javascript/Registrar.js"></script>
+</body>
+
+</html>

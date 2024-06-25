@@ -1,0 +1,46 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+button.btn-link {
+    margin: 0 10px;
+    color: #ba68c8;
+}
+
+button.btn-primary {
+    margin-top: 20px;
+}
+
+.Continuar {
+    background-color: #6a1b9a;
+    color: #fff;
+}
+
+#user-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#user-info img {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
