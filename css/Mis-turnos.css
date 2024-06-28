@@ -1,0 +1,135 @@
+.header-title {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #6a1b9a;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.header-title img {
+    margin-right: 10px;
+    height: 34px;
+}
+
+button.btn-link {
+    margin: 0 10px;
+    color: #ba68c8;
+}
+
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+#user-info img {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.header-title h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #ba68c8;
+}
+
+.no-turnos {
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+}
+
+.logo {
+    max-height: 80px;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+}
+
+
+.active-button {
+    background-color: #6a1b9a;
+    color: white !important;
+}
+
+.turno-row {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap;
+}
+
+.turno-row div {
+    flex: 1 1 100px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.turno-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 5px 0;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+@media (max-width: 768px) {
+    .header-title h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 610px) {
+    .turno-row {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .turno-header {
+        display: none;
+    }
+
+    .turno-row div {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .turno-row div {
+        display: flex;
+        justify-content: space-between; 
+        padding: 5px 0; 
+    }
+
+    .turno-row div:before {
+        content: attr(data-label); 
+        font-weight: bold;
+        margin-right: 10px; 
+    }
+
+    .turno-row div:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    .turno-row div:nth-child(odd) {
+        background-color: #fff;
+    }
+}
