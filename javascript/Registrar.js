@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             lastName,
             birthDate,
             email,
-            password
+            password,
         };
 
         if (localStorage.getItem(dni)) {

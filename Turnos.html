@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva de Turnos</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/Turnos.css" rel="stylesheet">
+    <link href="./css/Turnos.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 text-center text-md-left">
                 <a href="home.html">
-                    <img src="/logos/logo.png" alt="Tesla Diagnóstico" class="my-4">
+                    <img src="./logos/logo.png" alt="Tesla Diagnóstico" class="my-4">
                 </a>
             </div>
             <div class="col-md-6 text-center text-md-right">
                 <div id="user-info" class="d-inline-block">
                     <span id="user-name"></span>
-                    <img src="/logos/images.png" alt="Usuario" class="ml-2">
+                    <img src="./logos/images.png" alt="Usuario" class="ml-2">
                     <button type="button" id="logoutBtn" class="btn btn-link">Cerrar sesión</button>
                 </div>
             </div>
@@ -32,18 +32,58 @@
                 <button type="button" class="btn btn-link">AYUDA</button>
             </div>
         </div>
+
+        <!--TURNO-->
         <div class="row">
             <div class="col-12">
                 <form id="turnoForm">
                     <div class="form-group">
-                        <label for="turnoType">¿Qué turnos necesitás?</label>
-                        <select class="form-control" id="turnoType" onchange="toggleTurnoOptions()">
+                        <h2>¿Qué turno necesitás?</h2>
+                        <!-- <select class="form-control" id="turnoType" onchange="toggleTurnoOptions()">
                             <option value="">Selecciona una opción</option>
                             <option value="consulta">Turno para una consulta</option>
                             <option value="laboratorio">Turno para laboratorio o imágenes</option>
-                        </select>
+                        </select> -->
+                        <div class="form-row" style="margin: 1em 15%;">
+                            <div class="form-group col-md-4">
+                                <button type="button" class="card-link btn" onclick="cambiarSeleccion('opcion-consulta', 'opcion-laboratorio', 'opcion-imagen')">
+                                    <div id="opcion-consulta" class="card card-turno" style="height: max-content;">
+                                        <div class="col-auto icono">
+                                            <img src="./logos/consulta-icono.png" alt="Agregar paciente" class="logo">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Consulta</h5>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <button type="button" class="card-link btn" onclick="cambiarSeleccion('opcion-laboratorio', 'opcion-consulta', 'opcion-imagen')">
+                                    <div id="opcion-laboratorio" class="card card-turno" style="height: max-content;">
+                                        <div class="col-auto icono">
+                                            <img src="./logos/laboratorio-icono.png" alt="laboratorio-icono" class="logo">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Laboratorio</h5>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <button type="button" class="card-link btn" onclick="cambiarSeleccion('opcion-imagen', 'opcion-laboratorio', 'opcion-consulta')">
+                                    <div id="opcion-imagen" class="card card-turno" style="height: max-content;">
+                                        <div class="col-auto icono">
+                                            <img src="./logos/imagen-icono.png" alt="Agregar paciente" class="logo">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Imagen</h5>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div id="consultaOptions" style="display: none;">
+                    <!-- <div id="consultaOptions" style="display: none;">
                         <div class="form-group">
                             <label for="consultaType">¿Qué tipo de consulta necesitás?</label>
                             <select class="form-control" id="consultaType">
@@ -52,12 +92,75 @@
                                 <option value="nuevaEspecialidad">Nueva especialidad</option>
                             </select>
                         </div>
-                    </div>
-                    <button type="button" class="btn Continuar" onclick="showPatientForm()">Siguiente</button>
+                    </div> -->
+                    <!-- <button type="button" class="btn Continuar" onclick="showPatientForm()">Siguiente</button> -->
+                    <button type="button" class="btn Continuar" onclick="showFamilyGroupForm()">Siguiente</button>
                 </form>
             </div>
         </div>
-        <div class="row" id="patientForm" style="display: none;">
+
+        <!--GRUPO FAMILIAR-->
+        <div class="row" id="grupoFamiliarForm" style="display: none;">
+            <div class="col-12">
+                <h2>El turno es para:</h2>
+                <form>
+                    <div class="form-row">
+
+                        <!--INFO TURNO-->
+                        <div class="form-group col-md-3">
+                            <br>
+                            <div class="tarjetaInfoTurno">
+                                <div class="card-body">
+                                    <h5>Reservar turno</h5>
+                                    <div>
+                                        <button id="idTipoConsulta" onclick="backToTurnoForm()" class="botonInfo"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <button type="button" class="card-link btn" onclick="showConsultaForm('idNombre1')">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 id="idNombre1" class="card-title">Apellido, Nombre1</h5>
+                                        <p class="card-text">50.000.000</p>
+                                        <p class="card-text">Historia clínica 123</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                  
+                        <div class="form-group col-md-2">
+                            <button type="button" class="card-link btn" onclick="showConsultaForm('idNombre2')">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 id="idNombre2" class="card-title">Apellido, Nombre2</h5>
+                                        <p class="card-text">53.000.000</p>
+                                        <p class="card-text">Historia clínica 578</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <button type="button" class="card-link btn" onclick="showConsultaForm('en_construccion')">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 id="en_construccion" class="card-title">Agregar al grupo familiar</h5>
+                                        <img src="./logos/agregar_paciente.png" alt="Agregar paciente" class="logo">
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--FORM PACIENTE-->
+        <!-- <div class="row" id="patientForm" style="display: none;">
             <div class="col-12">
                 <h2>Datos del Paciente:</h2>
                 <form>
@@ -78,42 +181,35 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                            <input type="text" class="form-control" id="fechaNacimiento" placeholder="Día/Mes/Año">
+                            <input type="date" class="form-control" id="fechaNacimiento" placeholder="Día/Mes/Año">
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="provincia">Provincia</label>
-                            <input type="text" class="form-control" id="provincia" placeholder="Provincia">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="localidad">Localidad</label>
-                            <input type="text" class="form-control" id="localidad" placeholder="Localidad">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="telefono1">Teléfono 1</label>
-                            <input type="text" class="form-control" id="telefono1" placeholder="011-4444-4444">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="telefono2">Teléfono 2</label>
-                            <input type="text" class="form-control" id="telefono2" placeholder="011-4444-4444">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="Correo electrónico">
-                    </div>
-                    <button type="button" class="btn Continuar" onclick="showConsultaForm()">Siguiente</button>
+                    <button type="button" class="btn Continuar" onclick="showConsultaForm(), guardarPaciente()">Siguiente</button>
                 </form>
             </div>
-        </div>
+        </div> -->
+
+        <!--CONSULTA-->
         <div class="row" id="consultaForm" style="display: none;">
             <div class="col-12">
                 <h2>Solicito Consulta para:</h2>
                 <form>
                     <div class="form-row">
+                        
+                        <!--INFO TURNO (HACERLO SU PROPIO CONTAINER QUE SE ACTUALIZA CON CADA BOTON NUEVO)-->
+                        <div class="form-group col-md-3">
+                            <br>
+                            <div class="tarjetaInfoTurno">
+                                <div class="card-body">
+                                    <h5>Reservar turno</h5>
+                                    <div>
+                                        <!-- <button id="idTipoConsulta" onclick="backToTurnoForm()" class="botonInfo"></button> --> 
+                                        <button id="idPacienteConsulta" onclick="backToGrupoFamiliarForm()" class="botonInfo">asdasd</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group col-md-4">
                             <label for="especialidad">Seleccione especialidad</label>
                             <select class="form-control" id="especialidad">
@@ -147,10 +243,11 @@
                 </form>
             </div>
         </div>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="/javascript/Turnos.js"></script>
+    <script src="./javascript/Turnos.js"></script>
 </body>
 </html>
