@@ -49,8 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
             noTurnosMessage.textContent = 'No tienes turnos reservados.';
             turnosList.appendChild(noTurnosMessage);
         }
-
-        document.getElementById('turnosList').appendChild(turnosList);
     }
 });
 
