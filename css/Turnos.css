@@ -44,3 +44,25 @@ button.btn-primary {
     height: 30px;
     margin-left: 10px;
 }
+
+.logo {
+    max-height: 80px;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+}
+
+.active-button {
+    background-color: #6a1b9a;
+    color: white !important;
+}
+
+.btn-nav {
+    width: 150px; /* Asegura que todos los botones tengan el mismo ancho */
+    background-color: #6a1b9a;
+    color: white;
+    margin: 5px;
+}
+
+.atras {
+    background-color: #4f5152;
+}

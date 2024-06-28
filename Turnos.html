@@ -12,7 +12,7 @@
         <div class="row align-items-center">
             <div class="col-md-6 text-center text-md-left">
                 <a href="home.html">
-                    <img src="/logos/logo.png" alt="Tesla Diagnóstico" class="my-4">
+                    <img src="/logos/logo.png" alt="Tesla Diagnóstico" class="my-4 logo">
                 </a>
             </div>
             <div class="col-md-6 text-center text-md-right">
@@ -25,11 +25,11 @@
         </div>
         <div class="row">
             <div class="col-12 text-center mb-4">
-                <button type="button" class="btn btn-link">RESERVAR TURNO</button>
-                <button type="button" class="btn btn-link">MIS TURNOS</button>
-                <button type="button" class="btn btn-link">MIS ESTUDIOS</button>
-                <button type="button" class="btn btn-link">GRUPO FAMILIAR</button>
-                <button type="button" class="btn btn-link">AYUDA</button>
+                <button type="button" class="btn" id="reservarTurnoBtn">RESERVAR TURNO</button>
+                <button type="button" class="btn" id="misTurnosBtn">MIS TURNOS</button>
+                <button type="button" class="btn">MIS ESTUDIOS</button>
+                <button type="button" class="btn">GRUPO FAMILIAR</button>
+                <button type="button" class="btn">AYUDA</button>
             </div>
         </div>
         <div class="row">
@@ -37,7 +37,7 @@
                 <form id="turnoForm">
                     <div class="form-group">
                         <label for="turnoType">¿Qué turnos necesitás?</label>
-                        <select class="form-control" id="turnoType" onchange="toggleTurnoOptions()">
+                        <select class="form-control" id="turnoType" onchange="toggleTurnoOptions()" required>
                             <option value="">Selecciona una opción</option>
                             <option value="consulta">Turno para una consulta</option>
                             <option value="laboratorio">Turno para laboratorio o imágenes</option>
@@ -46,14 +46,16 @@
                     <div id="consultaOptions" style="display: none;">
                         <div class="form-group">
                             <label for="consultaType">¿Qué tipo de consulta necesitás?</label>
-                            <select class="form-control" id="consultaType">
+                            <select class="form-control" id="consultaType" required>
                                 <option value="">Selecciona una opción</option>
                                 <option value="seguimiento">Seguimiento</option>
                                 <option value="nuevaEspecialidad">Nueva especialidad</option>
                             </select>
                         </div>
                     </div>
-                    <button type="button" class="btn Continuar" onclick="showPatientForm()">Siguiente</button>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-nav Continuar" onclick="showPatientForm()">Siguiente</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -64,37 +66,37 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="nombre">Apellidos, Nombres</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Apellidos, Nombres">
+                            <input type="text" class="form-control" id="nombre" placeholder="Apellidos, Nombres" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="dni">D.N.I.</label>
-                            <input type="text" class="form-control" id="dni" placeholder="Número de documento">
+                            <input type="text" class="form-control" id="dni" placeholder="Número de documento" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="historia">Nro. Historia clínica</label>
-                            <input type="text" class="form-control" id="historia" placeholder="Nro. Historia clínica">
+                            <input type="text" class="form-control" id="historia" placeholder="Nro. Historia clínica" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                            <input type="text" class="form-control" id="fechaNacimiento" placeholder="Día/Mes/Año">
+                            <input type="text" class="form-control" id="fechaNacimiento" placeholder="Día/Mes/Año" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="provincia">Provincia</label>
-                            <input type="text" class="form-control" id="provincia" placeholder="Provincia">
+                            <input type="text" class="form-control" id="provincia" placeholder="Provincia" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="localidad">Localidad</label>
-                            <input type="text" class="form-control" id="localidad" placeholder="Localidad">
+                            <input type="text" class="form-control" id="localidad" placeholder="Localidad" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="telefono1">Teléfono 1</label>
-                            <input type="text" class="form-control" id="telefono1" placeholder="011-4444-4444">
+                            <input type="text" class="form-control" id="telefono1" placeholder="011-4444-4444" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="telefono2">Teléfono 2</label>
@@ -103,9 +105,12 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Correo electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="Correo electrónico">
+                        <input type="email" class="form-control" id="email" placeholder="Correo electrónico" required>
                     </div>
-                    <button type="button" class="btn Continuar" onclick="showConsultaForm()">Siguiente</button>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-nav atras" onclick="showTurnoForm()">Atrás</button>
+                        <button type="button" class="btn btn-nav Continuar" onclick="showConsultaForm()">Siguiente</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -116,34 +121,66 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="especialidad">Seleccione especialidad</label>
-                            <select class="form-control" id="especialidad">
-                                <option value="">Selecciona una opción</option>
-                                <option value="medico">Médico</option>
-                                <option value="pediatra">Pediatra</option>
-                                <!-- Agregar más opciones según sea necesario -->
+                            <select class="form-control" id="especialidad" required>
+                                <option value="adolescencia">Adolescencia</option>
+                                <option value="cardiologia">Cardiología</option>
+                                <option value="cirugia_general">Cirugía General</option>
+                                <option value="cirugia_plastica">Cirugía Plástica</option>
+                                <option value="clinica">Clínica</option>
+                                <option value="clinica_interdisciplinarias">Clínica Interdisciplinarias</option>
+                                <option value="crecimiento_desarrollo">Crecimiento y Desarrollo</option>
+                                <option value="dermatologia">Dermatología</option>
+                                <option value="diabetes">Diabetes</option>
+                                <option value="endocrinologia">Endocrinología</option>
+                                <option value="endoscopia_respiratoria">Endoscopia Respiratoria</option>
+                                <option value="errores_congenitos">Errores Congénitos</option>
+                                <option value="escoliosis">Escoliosis</option>
+                                <option value="gastroenterologia">Gastroenterología</option>
+                                <option value="genetica">Genética</option>
+                                <option value="ginecologia">Ginecología</option>
+                                <option value="hepatologia">Hepatología</option>
+                                <option value="infectologia">Infectología</option>
+                                <option value="inmunologia">Inmunología</option>
+                                <option value="intoxicaciones">Intoxicaciones</option>
+                                <option value="nefrologia">Nefrología</option>
+                                <option value="neumonologia">Neumonología</option>
+                                <option value="neurocirugia">Neurocirugía</option>
+                                <option value="neurologia">Neurología</option>
+                                <option value="nutricion">Nutrición</option>
+                                <option value="oftalmologia">Oftalmología</option>
+                                <option value="otorrinolaringologia">Otorrinolaringología</option>
+                                <option value="reumatologia">Reumatología</option>
+                                <option value="urologia">Urología</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="fechaConsulta">Fecha</label>
-                            <input type="date" class="form-control" id="fechaConsulta">
+                            <input type="date" class="form-control" id="fechaConsulta" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="horaConsulta">Hora</label>
+                            <input type="time" class="form-control" id="horaConsulta" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Modo de Atención preferido:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="modoAtencion" id="presencial" value="presencial">
+                            <input class="form-check-input" type="radio" name="modoAtencion" id="presencial" value="presencial" required>
                             <label class="form-check-label" for="presencial">Presencial</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="modoAtencion" id="distancia" value="distancia">
+                            <input class="form-check-input" type="radio" name="modoAtencion" id="distancia" value="distancia" required>
                             <label class="form-check-label" for="distancia">A Distancia</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="motivoConsulta">Motivo de Consulta (máximo 1000 caracteres)</label>
-                        <textarea class="form-control" id="motivoConsulta" rows="3" maxlength="1000"></textarea>
+                        <textarea class="form-control" id="motivoConsulta" rows="3" maxlength="1000" required></textarea>
                     </div>
-                    <button type="submit" class="btn Continuar">Enviar</button>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-nav atras" onclick="showPatientForm()">Atrás</button>
+                        <button type="submit" class="btn btn-nav Continuar">Enviar</button>
+                    </div>
                 </form>
             </div>
         </div>

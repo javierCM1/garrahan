@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Turnos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/Turnos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/Mis-turnos.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-left">
+                <a href="home.html">
+                    <img src="/logos/logo.png" alt="Tesla Diagnóstico" class="my-4 logo">
+                </a>
+            </div>
+            <div class="col-md-6 text-center text-md-right">
+                <div id="user-info" class="d-inline-block">
+                    <span id="user-name"></span>
+                    <img src="/logos/images.png" alt="Usuario" class="ml-2">
+                    <button type="button" id="logoutBtn" class="btn btn-link">Cerrar sesión</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <button type="button" class="btn" id="reservarTurnoBtn">RESERVAR TURNO</button>
+                <button type="button" class="btn active-button" id="misTurnosBtn">MIS TURNOS</button>
+                <button type="button" class="btn">MIS ESTUDIOS</button>
+                <button type="button" class="btn">GRUPO FAMILIAR</button>
+                <button type="button" class="btn">AYUDA</button>
+            </div>
+        </div>
+        <div id="misTurnos">
+            <div class="header-title">
+                <img src="/logos/turnos.png" alt="Icono Turnos">
+                <h2>Mis Turnos</h2>
+            </div>
+            <div class="turno-row turno-header">
+                <div>Fecha</div>
+                <div>Hora</div>
+                <div>N° Turno</div>
+                <div>Nombre del Paciente</div>
+                <div>Modo de Atención</div>
+                <div>Cancelar</div>
+            </div>
+            <div id="turnosList">
+                <!-- Aquí se llenará la información de los turnos -->
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/javascript/Turnos.js"></script>
+</body>
+</html>
