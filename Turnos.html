@@ -32,20 +32,38 @@
                 <button type="button" class="btn">AYUDA</button>
             </div>
         </div>
+        <div class="header-title">
+            <img src="./logos/turnos.png" alt="Icono Turnos">
+            <h2>Reservar Turno</h2>
+        </div>
+
+        <div class="progress-container"> 
+            <ul id="progressbar"> 
+                <li class="active" 
+                    id="paso1"> 
+                    <strong>Tipo de turno</strong> 
+                </li> 
+                <li id="paso2"> 
+                      <strong>Selección de paciente</strong> 
+                  </li> 
+                <li id="paso3"> 
+                      <strong>Información de la consulta</strong> 
+                  </li>
+            </ul> 
+            <div class="progress"> 
+                <div class="progress-bar"></div> 
+            </div> 
+        </div> 
 
         <!--TURNO-->
-        <div class="row">
+        <div class="row" id="turnoForm">
             <div class="col-12">
-                <form id="turnoForm">
+                <form>
                     <div class="form-group">
                         <h2>¿Qué turno necesitás?</h2>
-                        <!-- <select class="form-control" id="turnoType" onchange="toggleTurnoOptions()">
-                            <option value="">Selecciona una opción</option>
-                            <option value="consulta">Turno para una consulta</option>
-                            <option value="laboratorio">Turno para laboratorio o imágenes</option>
-                        </select> -->
-                        <div class="form-row" style="margin: 1em 15%;">
-                            <div class="form-group col-md-4">
+                        <div class="form-row" style="display: flex; align-items: center; justify-content: center;">
+
+                            <div class="form-group col-sm-3">
                                 <button type="button" class="card-link btn" onclick="cambiarSeleccion('opcion-consulta', 'opcion-laboratorio', 'opcion-imagen')">
                                     <div id="opcion-consulta" class="card card-turno" style="height: max-content;">
                                         <div class="col-auto icono">
@@ -57,7 +75,8 @@
                                     </div>
                                 </button>
                             </div>
-                            <div class="form-group col-md-4">
+
+                            <div class="form-group col-md-3">
                                 <button type="button" class="card-link btn" onclick="cambiarSeleccion('opcion-laboratorio', 'opcion-consulta', 'opcion-imagen')">
                                     <div id="opcion-laboratorio" class="card card-turno" style="height: max-content;">
                                         <div class="col-auto icono">
@@ -69,7 +88,8 @@
                                     </div>
                                 </button>
                             </div>
-                            <div class="form-group col-md-4">
+
+                            <div class="form-group col-md-3">
                                 <button type="button" class="card-link btn" onclick="cambiarSeleccion('opcion-imagen', 'opcion-laboratorio', 'opcion-consulta')">
                                     <div id="opcion-imagen" class="card card-turno" style="height: max-content;">
                                         <div class="col-auto icono">
@@ -81,6 +101,7 @@
                                     </div>
                                 </button>
                             </div>
+
                         </div>
                     </div>
                     <!-- <div id="consultaOptions" style="display: none;">
@@ -94,7 +115,9 @@
                         </div>
                     </div> -->
                     <!-- <button type="button" class="btn Continuar" onclick="showPatientForm()">Siguiente</button> -->
-                    <button type="button" class="btn Continuar" onclick="showFamilyGroupForm()">Siguiente</button>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-nav Continuar" value="Continuar" onclick="showFamilyGroupForm()">Siguiente</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -102,58 +125,50 @@
         <!--GRUPO FAMILIAR-->
         <div class="row" id="grupoFamiliarForm" style="display: none;">
             <div class="col-12">
-                <h2>El turno es para:</h2>
                 <form>
-                    <div class="form-row">
-
-                        <!--INFO TURNO-->
-                        <div class="form-group col-md-3">
-                            <br>
-                            <div class="tarjetaInfoTurno">
-                                <div class="card-body">
-                                    <h5>Reservar turno</h5>
-                                    <div>
-                                        <button id="idTipoConsulta" onclick="backToTurnoForm()" class="botonInfo"></button>
+                    <div class="form-group">
+                        <h2>El turno es para:</h2>
+                        <div class="form-row" style="display: flex; align-items: center; justify-content: center;">
+    
+                            <div class="form-group col-md-2">
+                                <button type="button" class="card-link btn" onclick="guardarNombrePaciente('idNombre1','idNombre2','en_construccion')">
+                                    <div id="idNombre1" class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Apellido, Nombre1</h5>
+                                            <p class="card-text">50.000.000</p>
+                                            <p class="card-text">Historia clínica 123</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </button>
+                            </div>
+                      
+                            <div class="form-group col-md-2">
+                                <button type="button" class="card-link btn" onclick="guardarNombrePaciente('idNombre2','idNombre1','en_construccion')">
+                                    <div id="idNombre2" class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Apellido, Nombre2</h5>
+                                            <p class="card-text">53.000.000</p>
+                                            <p class="card-text">Historia clínica 578</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+    
+                            <div class="form-group col-md-2">
+                                <button type="button" class="card-link btn" onclick="guardarNombrePaciente('en_construccion','idNombre2','idNombre1')">
+                                    <div id="en_construccion" class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Agregar al grupo familiar</h5>
+                                            <img src="./logos/agregar_paciente.png" alt="Agregar paciente" class="logo">
+                                        </div>
+                                    </div>
+                                </button>
                             </div>
                         </div>
-
-                        <div class="form-group col-md-2">
-                            <button type="button" class="card-link btn" onclick="showConsultaForm('idNombre1')">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 id="idNombre1" class="card-title">Apellido, Nombre1</h5>
-                                        <p class="card-text">50.000.000</p>
-                                        <p class="card-text">Historia clínica 123</p>
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-                  
-                        <div class="form-group col-md-2">
-                            <button type="button" class="card-link btn" onclick="showConsultaForm('idNombre2')">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 id="idNombre2" class="card-title">Apellido, Nombre2</h5>
-                                        <p class="card-text">53.000.000</p>
-                                        <p class="card-text">Historia clínica 578</p>
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-
-                        <div class="form-group col-md-2">
-                            <button type="button" class="card-link btn" onclick="showConsultaForm('en_construccion')">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 id="en_construccion" class="card-title">Agregar al grupo familiar</h5>
-                                        <img src="./logos/agregar_paciente.png" alt="Agregar paciente" class="logo">
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-nav atras" value="Atras" onclick="showTurnoForm()">Atrás</button>
+                        <button type="button" class="btn btn-nav Continuar" value="Continuar" onclick="showConsultaForm()">Siguiente</button>
                     </div>
                 </form>
             </div>
@@ -195,53 +210,39 @@
                 <h2>Solicito Consulta para:</h2>
                 <form>
                     <div class="form-row">
-                        
-                        <!--INFO TURNO (HACERLO SU PROPIO CONTAINER QUE SE ACTUALIZA CON CADA BOTON NUEVO)-->
-                        <div class="form-group col-md-3">
-                            <br>
-                            <div class="tarjetaInfoTurno">
-                                <div class="card-body">
-                                    <h5>Reservar turno</h5>
-                                    <div>
-                                        <!-- <button id="idTipoConsulta" onclick="backToTurnoForm()" class="botonInfo"></button> --> 
-                                        <button id="idPacienteConsulta" onclick="backToGrupoFamiliarForm()" class="botonInfo">asdasd</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="form-group col-md-4">
                             <label for="especialidad">Seleccione especialidad</label>
                             <select class="form-control" id="especialidad" required>
-                                <option value="adolescencia">Adolescencia</option>
-                                <option value="cardiologia">Cardiología</option>
-                                <option value="cirugia_general">Cirugía General</option>
-                                <option value="cirugia_plastica">Cirugía Plástica</option>
-                                <option value="clinica">Clínica</option>
-                                <option value="clinica_interdisciplinarias">Clínica Interdisciplinarias</option>
-                                <option value="crecimiento_desarrollo">Crecimiento y Desarrollo</option>
-                                <option value="dermatologia">Dermatología</option>
-                                <option value="diabetes">Diabetes</option>
-                                <option value="endocrinologia">Endocrinología</option>
-                                <option value="endoscopia_respiratoria">Endoscopia Respiratoria</option>
-                                <option value="errores_congenitos">Errores Congénitos</option>
-                                <option value="escoliosis">Escoliosis</option>
-                                <option value="gastroenterologia">Gastroenterología</option>
-                                <option value="genetica">Genética</option>
-                                <option value="ginecologia">Ginecología</option>
-                                <option value="hepatologia">Hepatología</option>
-                                <option value="infectologia">Infectología</option>
-                                <option value="inmunologia">Inmunología</option>
-                                <option value="intoxicaciones">Intoxicaciones</option>
-                                <option value="nefrologia">Nefrología</option>
-                                <option value="neumonologia">Neumonología</option>
-                                <option value="neurocirugia">Neurocirugía</option>
-                                <option value="neurologia">Neurología</option>
-                                <option value="nutricion">Nutrición</option>
-                                <option value="oftalmologia">Oftalmología</option>
-                                <option value="otorrinolaringologia">Otorrinolaringología</option>
-                                <option value="reumatologia">Reumatología</option>
-                                <option value="urologia">Urología</option>
+                                <option value="Adolescencia">Adolescencia</option>
+                                <option value="Cardiologia">Cardiología</option>
+                                <option value="Cirugia_general">Cirugía General</option>
+                                <option value="Cirugia_plastica">Cirugía Plástica</option>
+                                <option value="Clinica">Clínica</option>
+                                <option value="Clinica_interdisciplinarias">Clínica Interdisciplinarias</option>
+                                <option value="Crecimiento_desarrollo">Crecimiento y Desarrollo</option>
+                                <option value="Dermatologia">Dermatología</option>
+                                <option value="Diabetes">Diabetes</option>
+                                <option value="Endocrinologia">Endocrinología</option>
+                                <option value="Endoscopia_respiratoria">Endoscopia Respiratoria</option>
+                                <option value="Errores_congenitos">Errores Congénitos</option>
+                                <option value="Escoliosis">Escoliosis</option>
+                                <option value="Gastroenterologia">Gastroenterología</option>
+                                <option value="Genetica">Genética</option>
+                                <option value="Ginecologia">Ginecología</option>
+                                <option value="Hepatologia">Hepatología</option>
+                                <option value="Infectologia">Infectología</option>
+                                <option value="Inmunologia">Inmunología</option>
+                                <option value="Intoxicaciones">Intoxicaciones</option>
+                                <option value="Nefrologia">Nefrología</option>
+                                <option value="Neumonologia">Neumonología</option>
+                                <option value="Neurocirugia">Neurocirugía</option>
+                                <option value="Neurologia">Neurología</option>
+                                <option value="Nutricion">Nutrición</option>
+                                <option value="Oftalmologia">Oftalmología</option>
+                                <option value="Otorrinolaringologia">Otorrinolaringología</option>
+                                <option value="Reumatologia">Reumatología</option>
+                                <option value="Urologia">Urología</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
@@ -256,11 +257,11 @@
                     <div class="form-group">
                         <label>Modo de Atención preferido:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="modoAtencion" id="presencial" value="presencial" required>
+                            <input class="form-check-input" type="radio" name="modoAtencion" id="presencial" value="Presencial" required>
                             <label class="form-check-label" for="presencial">Presencial</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="modoAtencion" id="distancia" value="distancia" required>
+                            <input class="form-check-input" type="radio" name="modoAtencion" id="distancia" value="Distancia" required>
                             <label class="form-check-label" for="distancia">A Distancia</label>
                         </div>
                     </div>
@@ -269,8 +270,8 @@
                         <textarea class="form-control" id="motivoConsulta" rows="3" maxlength="1000" required></textarea>
                     </div>
                     <div class="form-group text-center">
-                        <button type="button" class="btn btn-nav atras" onclick="showPatientForm()">Atrás</button>
-                        <button type="submit" class="btn btn-nav Continuar">Enviar</button>
+                        <button type="button" class="btn btn-nav atras" value="Atras" onclick="showFamilyGroupForm()">Atrás</button>
+                        <button type="submit" class="btn btn-nav Continuar" value="Continuar">Reservar turno</button>
                     </div>
                 </form>
             </div>

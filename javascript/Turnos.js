@@ -45,9 +45,21 @@ function showPatientForm() {
 let tipoTurno;
 let paciente;
 
-function showConsultaForm(idNombreRecibido) {
+function showConsultaForm() {
+    document.getElementById('turnoForm').style.display = 'none';
     document.getElementById('grupoFamiliarForm').style.display = 'none';
     document.getElementById('consultaForm').style.display = 'block';
+
+    if(paciente==='en_construccion'){
+        document.getElementById('grupoFamiliarForm').style.display = 'block';
+        document.getElementById('consultaForm').style.display = 'none';
+    }
+}
+
+function guardarNombrePaciente(idNombreRecibido, noSel1, noSel2) {
+    document.getElementById(noSel1).classList.remove("seleccionado");
+    document.getElementById(noSel2).classList.remove("seleccionado");
+    document.getElementById(idNombreRecibido).classList.add("seleccionado");
 
     let id = document.getElementById(idNombreRecibido).id;
 
@@ -57,16 +69,21 @@ function showConsultaForm(idNombreRecibido) {
         paciente='Apellido, Nombre2';
     }else{
         //mostrar modal "En construcción" ->
+        paciente='en_construccion';
         alert('En construcción...');
-        document.getElementById('grupoFamiliarForm').style.display = 'block';
     }
-
-    document.getElementById('idPacienteConsulta').innerHTML+=`Paciente: ${paciente} <img src="./logos/quitarSeleccion.png" alt="" id="quitarSeleccion">`;
 }
 
 function showFamilyGroupForm() {
     document.getElementById('turnoForm').style.display = 'none';
+    document.getElementById('consultaForm').style.display = 'none';
     document.getElementById('grupoFamiliarForm').style.display = 'block';
+}
+
+function showTurnoForm() {
+    document.getElementById('turnoForm').style.display = 'block';
+    document.getElementById('grupoFamiliarForm').style.display = 'none';
+    document.getElementById('consultaForm').style.display = 'none';
 }
 
 function cambiarSeleccion(opcionSeleccionada, opcionNoSeleccionada1, opcionNoSeleccionada2) {
@@ -75,31 +92,11 @@ function cambiarSeleccion(opcionSeleccionada, opcionNoSeleccionada1, opcionNoSel
     document.getElementById(opcionSeleccionada).classList.add("seleccionado");
     
     if(opcionSeleccionada =='opcion-consulta')
-    {
         tipoTurno="Consulta médica";
-    }
     else if(opcionSeleccionada == 'opcion-laboratorio')
-    {
         tipoTurno="Laboratorio";
-    }
     else
-    {
         tipoTurno="Diagnóstico por imágenes";
-    }
-
-    document.getElementById('idTipoConsulta').innerHTML+=`Tipo de turno: ${tipoTurno} <img src="./logos/quitarSeleccion.png" alt="" id="quitarSeleccion">`;
-}
-
-function backToTurnoForm() {
-    document.getElementById('grupoFamiliarForm').style.display = 'none';
-    document.getElementById('consultaForm').style.display = 'none';
-    document.getElementById('turnoForm').style.display = 'block';
-}
-
-function backToGrupoFamiliarForm() {
-    document.getElementById('turnoForm').style.display = 'none';
-    document.getElementById('consultaForm').style.display = 'none';
-    document.getElementById('grupoFamiliarForm').style.display = 'block';
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -119,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('reservarTurnoBtn').addEventListener('click', function () {
-        window.location.href = 'Turnos.html'; // Asegúrate de que esta sea la URL correcta para reservar un turno
+        window.location.href = 'Turnos.html';
     });
 
     // Cambiar color del botón activo
@@ -139,11 +136,12 @@ if (consultaForm) {
             fecha: document.getElementById('fechaConsulta').value,
             hora: document.getElementById('horaConsulta').value,
             numeroDeTurno: Math.floor(Math.random() * 1000000), // Número de turno aleatorio
-            nombre: document.getElementById('nombre').value,
+            nombre: paciente,
             modoAtencion: document.querySelector('input[name="modoAtencion"]:checked').value,
-            motivo: document.getElementById('motivoConsulta').value
+            motivo: document.getElementById('motivoConsulta').value,
+            especialidad: document.getElementById('especialidad').value
         };
-
+        
         let turnos = JSON.parse(localStorage.getItem('turnos')) || [];
         turnos.push(turno);
         localStorage.setItem('turnos', JSON.stringify(turnos));
@@ -151,3 +149,61 @@ if (consultaForm) {
         window.location.href = 'Mis-Turnos.html'; // Redirigir a Mis Turnos después de guardar
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () { 
+	const progressListItems = document.querySelectorAll("#progressbar li"); 
+	const progressBar = document.querySelector(".progress-bar"); 
+	let currentStep = 0; 
+
+	function updateProgress() { 
+		const percent = (currentStep / (progressListItems.length - 1)) * 100; 
+		progressBar.style.width = percent + "%"; 
+
+		progressListItems.forEach((item, index) => { 
+			if (index === currentStep) { 
+				item.classList.add("active"); 
+			} else { 
+				item.classList.remove("active"); 
+			} 
+		}); 
+	} 
+
+	// function showStep(stepIndex) { 
+	// 	const steps = 
+	// 		document.querySelectorAll(".step-container fieldset"); 
+	// 	steps.forEach((step, index) => { 
+	// 		if (index === stepIndex) { 
+	// 			step.style.display = "block"; 
+	// 		} else { 
+	// 			step.style.display = "none"; 
+	// 		} 
+	// 	}); 
+	// } 
+
+	function nextStep() { 
+		if (currentStep < progressListItems.length - 1) { 
+			currentStep++; 
+			//showStep(currentStep); 
+			updateProgress(); 
+		} 
+	} 
+
+	function prevStep() { 
+		if (currentStep > 0) { 
+			currentStep--; 
+			//showStep(currentStep); 
+			updateProgress(); 
+		} 
+	} 
+
+	const nextStepButtons = document.querySelectorAll(".Continuar"); 
+	const prevStepButtons = document.querySelectorAll(".atras"); 
+
+	nextStepButtons.forEach((button) => { 
+		button.addEventListener("click", nextStep); 
+	}); 
+
+	prevStepButtons.forEach((button) => { 
+		button.addEventListener("click", prevStep); 
+	}); 
+});

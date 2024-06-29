@@ -42,6 +42,7 @@ function loadTurnos() {
                 <div data-label="Hora">${turno.hora}</div>
                 <div data-label="N° Turno">${turno.numeroDeTurno}</div>
                 <div data-label="Nombre del Paciente">${turno.nombre}</div>
+                <div data-label="Especialidad">${turno.especialidad}</div>
                 <div data-label="Modo de Atención">${turno.modoAtencion}</div>
                 <div data-label=""><button class="cancel-button" onclick="cancelarTurno(${index})">Cancelar</button></div>
             `;
