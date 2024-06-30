@@ -121,9 +121,10 @@ button.btn-primary {
 }
 
 .progress-container { 
-    text-align: center;
     margin-top: 2em;
     margin-bottom: 2em;
+    width: 80%;
+    margin-left: 10%;
 }
 
 #progressbar { 
@@ -156,4 +157,46 @@ button.btn-primary {
     width: 0; 
     height: 100%; 
     transition: width 0.4s ease-in-out; 
-} 
+}
+
+@media (max-width: 768px) {
+    .header-title h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 610px) {
+    .turno-row {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .turno-header {
+        display: none;
+    }
+
+    .turno-row div {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .turno-row div {
+        display: flex;
+        justify-content: space-between; 
+        padding: 5px 0; 
+    }
+
+    .turno-row div:before {
+        content: attr(data-label); 
+        font-weight: bold;
+        margin-right: 10px; 
+    }
+
+    .turno-row div:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    .turno-row div:nth-child(odd) {
+        background-color: #fff;
+    }
+}

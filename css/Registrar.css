@@ -1,0 +1,73 @@
+.form-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.con-form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.progress-container { 
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 80%;
+    margin-left: 10%;
+}
+
+#progressbar { 
+    list-style-type: none; 
+    display: flex; 
+    justify-content: space-between; 
+    color: lightgrey; 
+} 
+  
+#progressbar li { 
+    flex: 1; 
+    text-align: center; 
+    font-size: 1em;
+    position: relative; 
+} 
+  
+#progressbar li.active { 
+    color: #ba68c8;
+} 
+  
+.progress { 
+    height: 1em; 
+    background-color: lightgray; 
+    border-radius: 5px; 
+    overflow: hidden; 
+} 
+  
+.progress-bar { 
+    background-color: #6a1b9a; 
+    width: 0; 
+    height: 100%; 
+    transition: width 0.4s ease-in-out; 
+}
+
+.Continuar {
+    background-color: #6a1b9a;
+    color: #fff;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+button.btn-link {
+    margin: 0 10px;
+    color: #ba68c8;
+}

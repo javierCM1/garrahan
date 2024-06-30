@@ -34,3 +34,57 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'Inicia-sesion.html';
     });
 });
+
+function showDatosPersonales() {
+    document.getElementById('seccionDatosPersonales').style.display = 'block';
+    document.getElementById('seccionInfoCuenta').style.display = 'none';
+}
+
+function showInfoCuenta() {
+    document.getElementById('seccionDatosPersonales').style.display = 'none';
+    document.getElementById('seccionInfoCuenta').style.display = 'block';
+}
+
+document.addEventListener("DOMContentLoaded", function () { 
+	const progressListItems = document.querySelectorAll("#progressbar li"); 
+	const progressBar = document.querySelector(".progress-bar"); 
+	let currentStep = 0; 
+
+	function updateProgress() { 
+		const percent = (currentStep / (progressListItems.length - 1)) * 100; 
+		progressBar.style.width = percent + "%"; 
+
+		progressListItems.forEach((item, index) => { 
+			if (index === currentStep) { 
+				item.classList.add("active"); 
+			} else { 
+				item.classList.remove("active"); 
+			} 
+		}); 
+	}
+
+	function nextStep() { 
+		if (currentStep < progressListItems.length - 1) { 
+			currentStep++; 
+			updateProgress(); 
+		} 
+	} 
+
+	function prevStep() { 
+		if (currentStep > 0) { 
+			currentStep--;
+			updateProgress(); 
+		} 
+	} 
+
+	const nextStepButtons = document.querySelectorAll(".Continuar"); 
+	const prevStepButtons = document.querySelectorAll(".atras"); 
+
+	nextStepButtons.forEach((button) => { 
+		button.addEventListener("click", nextStep); 
+	}); 
+
+	prevStepButtons.forEach((button) => { 
+		button.addEventListener("click", prevStep); 
+	}); 
+});

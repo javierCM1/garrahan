@@ -72,12 +72,20 @@ function guardarNombrePaciente(idNombreRecibido, noSel1, noSel2) {
         paciente='en_construccion';
         alert('En construcción...');
     }
+
+    if(paciente!='en_construccion')
+    {
+        document.getElementById('paso2').innerHTML=`<strong>Paciente</strong>`;
+        document.getElementById('paso2').innerHTML+=`: ${paciente}`;
+    }
 }
 
 function showFamilyGroupForm() {
     document.getElementById('turnoForm').style.display = 'none';
     document.getElementById('consultaForm').style.display = 'none';
     document.getElementById('grupoFamiliarForm').style.display = 'block';
+
+    generarEspecialidades();
 }
 
 function showTurnoForm() {
@@ -90,6 +98,7 @@ function cambiarSeleccion(opcionSeleccionada, opcionNoSeleccionada1, opcionNoSel
     document.getElementById(opcionNoSeleccionada1).classList.remove("seleccionado");
     document.getElementById(opcionNoSeleccionada2).classList.remove("seleccionado");
     document.getElementById(opcionSeleccionada).classList.add("seleccionado");
+    let especialidad = document.getElementById('especialidad');
     
     if(opcionSeleccionada =='opcion-consulta')
         tipoTurno="Consulta médica";
@@ -97,6 +106,60 @@ function cambiarSeleccion(opcionSeleccionada, opcionNoSeleccionada1, opcionNoSel
         tipoTurno="Laboratorio";
     else
         tipoTurno="Diagnóstico por imágenes";
+
+    document.getElementById('paso1').innerHTML=`<strong>Tipo de turno</strong>`;
+    document.getElementById('paso1').innerHTML+=`: ${tipoTurno}`;
+}
+
+function generarEspecialidades() {
+    if(tipoTurno == 'Diagnóstico por imágenes'){
+        especialidad.innerHTML = '';
+
+        let opcion1 = document.createElement('option');
+        opcion1.value = 'Radiografía';
+        opcion1.innerHTML = `Radiografía`;
+        
+        let opcion2 = document.createElement('option');
+        opcion2.value = 'Ecografía';
+        opcion2.innerHTML = `Ecografía`;
+
+        let opcion3 = document.createElement('option');
+        opcion3.value = 'Tomografía';
+        opcion3.innerHTML = `Tomografía`;
+        
+        let opcion4 = document.createElement('option');
+        opcion4.value = 'Colonoscopía';
+        opcion4.innerHTML = `Colonoscopía`;
+
+        let opcion5 = document.createElement('option');
+        opcion5.value = 'Eco-doppler';
+        opcion5.innerHTML = `Eco-doppler`;
+
+        let opcion6 = document.createElement('option');
+        opcion6.value = 'Resonancia magnética';
+        opcion6.innerHTML = `Resonancia magnética`;
+
+        especialidad.appendChild(opcion1);
+        especialidad.appendChild(opcion2);
+        especialidad.appendChild(opcion3);
+        especialidad.appendChild(opcion4);
+        especialidad.appendChild(opcion5);
+        especialidad.appendChild(opcion6);
+    }
+    else if(tipoTurno == 'Laboratorio'){
+        especialidad.innerHTML = '';
+        
+        let opcion1 = document.createElement('option');
+        opcion1.value = 'Análisis de sangre';
+        opcion1.innerHTML = `Análisis de sangre`;
+        
+        let opcion2 = document.createElement('option');
+        opcion2.value = 'Análisis de orina';
+        opcion2.innerHTML = `Análisis de orina`;
+
+        especialidad.appendChild(opcion1);
+        especialidad.appendChild(opcion2);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
