@@ -158,6 +158,22 @@ button.btn-primary {
     transition: width 0.4s ease-in-out; 
 }
 
+.backdrop {
+    opacity: 30%
+}
+
+.imagenModal {
+    max-height: 2em;
+    margin-top: 1em; 
+    margin-bottom: 1em; 
+}
+
+.modal-header h5 {
+    margin-top: 1em; 
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+}
+
 @media (max-width: 768px) {
     .header-title h2 {
         font-size: 20px;

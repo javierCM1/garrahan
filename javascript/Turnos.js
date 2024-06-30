@@ -44,6 +44,7 @@ function showPatientForm() {
 
 let tipoTurno;
 let paciente;
+let banderaTurnoGuardado=false;
 
 function showConsultaForm() {
     document.getElementById('turnoForm').style.display = 'none';
@@ -68,15 +69,32 @@ function guardarNombrePaciente(idNombreRecibido, noSel1, noSel2) {
     }else if(id == 'idNombre2'){
         paciente='Apellido, Nombre2';
     }else{
-        //mostrar modal "En construcción" ->
         paciente='en_construccion';
-        alert('En construcción...');
+
+        $('#mensajeModal').show();
+        
+        document.getElementById('seccionTurnos').classList.add('backdrop');
+        document.getElementById('contenedorTituloModal').innerHTML=`
+                    <img src="./logos/error.png" alt="error" class="imagenModal" style="display: inline;">
+                    <h5 class="modal-title" id="txtModal">Disculpá las molestias</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerrarModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>`;
+        document.getElementById('contenedorBodyModal').innerHTML=`<p>La sección a la que tratás de acceder se encuentra en construcción.</p>`;        
     }
 
     if(paciente!='en_construccion')
     {
         document.getElementById('paso2').innerHTML=`<strong>Paciente</strong>`;
         document.getElementById('paso2').innerHTML+=`: ${paciente}`;
+    }
+}
+
+function cerrarModal() {
+	$('#mensajeModal').hide();
+    document.getElementById('seccionTurnos').classList.remove('backdrop');
+    if(banderaTurnoGuardado){
+        window.location.href = 'Mis-Turnos.html'; // Redirigir a Mis Turnos después de guardar
     }
 }
 
@@ -208,8 +226,19 @@ if (consultaForm) {
         let turnos = JSON.parse(localStorage.getItem('turnos')) || [];
         turnos.push(turno);
         localStorage.setItem('turnos', JSON.stringify(turnos));
+        
+        banderaTurnoGuardado = true;
 
-        window.location.href = 'Mis-Turnos.html'; // Redirigir a Mis Turnos después de guardar
+        $('#mensajeModal').show();
+        
+        document.getElementById('seccionTurnos').classList.add('backdrop');
+        document.getElementById('contenedorTituloModal').innerHTML=`
+                    <img src="./logos/tildeExito.png" alt="tildeExito" class="imagenModal" style="display: inline;">
+                    <h5 class="modal-title" id="txtModal">Turno registrado exitosamente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerrarModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>`;
+        document.getElementById('contenedorBodyModal').hidden=true;
     });
 }
 
