@@ -1,39 +1,84 @@
+let dni, firstName, lastName, birthDate, banderaDatosValidos=false;
+
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('registerForm').addEventListener('submit', function (e) {
+    document.getElementById('datosPersonalesForm').addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const dni = document.getElementById('registerDni').value;
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const birthDate = document.getElementById('birthDate').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('registerPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
+        dni = document.getElementById('registerDni').value;
+        firstName = document.getElementById('firstName').value;
+        lastName = document.getElementById('lastName').value;
+        birthDate = document.getElementById('birthDate').value;
 
-        if (password !== confirmPassword) {
-            alert('Las contraseñas no coinciden');
+		if (localStorage.getItem(dni)) {
+			banderaDatosValidos=false;
             return;
         }
-
-        const user = {
-            dni,
-            firstName,
-            lastName,
-            birthDate,
-            email,
-            password,
-        };
-
-        if (localStorage.getItem(dni)) {
-            alert('Este usuario ya está registrado');
-            return;
-        }
-
-        localStorage.setItem(dni, JSON.stringify(user));
-        alert('Registro exitoso');
-        window.location.href = 'Inicia-sesion.html';
+		
+		showInfoCuenta();
     });
 });
+
+document.querySelector('#confirmPassword').addEventListener('change', ()=>{
+	const password = document.getElementById('registerPassword').value;
+	const confirmPassword = document.getElementById('confirmPassword').value;
+
+	if (password !== confirmPassword) {
+		document.getElementById('errorContraseña').innerHTML+=`<p>Error, las contraseñas no coinciden.</p>`;
+		document.getElementById('confirmPassword').classList.add('error');
+	}
+	else{
+		document.getElementById('errorContraseña').innerHTML=``;
+		document.getElementById('confirmPassword').classList.remove('error');
+	}
+});
+
+document.querySelector('#registerDni').addEventListener('change', ()=>{
+	dni = document.getElementById('registerDni').value;
+
+	if (localStorage.getItem(dni)) {
+		document.getElementById('errorDni').innerHTML+=`<p>Error, el dni ya fue registrado.</p>`;
+		document.getElementById('registerDni').classList.add('error');
+	}
+	else{
+		document.getElementById('errorDni').innerHTML=``;
+		document.getElementById('registerDni').classList.remove('error');
+		banderaDatosValidos = true;
+	}
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+	document.getElementById('registerForm').addEventListener('submit', function (e) {
+		e.preventDefault();
+
+		const email = document.getElementById('email').value;
+		const password = document.getElementById('registerPassword').value;
+		const confirmPassword = document.getElementById('confirmPassword').value;
+
+		if (password !== confirmPassword) {
+			return;
+		}		
+
+		const user = {
+			dni,
+			firstName,
+			lastName,
+			birthDate,
+			email,
+			password,
+		};
+
+		localStorage.setItem(dni, JSON.stringify(user));
+		
+		//alert('Registro exitoso');
+		$('#mensajeModal').show();
+		document.getElementById('seccionInfoCuenta').style="opacity: 30%"
+	});
+});
+
+function cerrarModal() {
+	$('#mensajeModal').hide();
+	window.location.href = 'Inicia-sesion.html';
+}
 
 function showDatosPersonales() {
     document.getElementById('seccionDatosPersonales').style.display = 'block';
@@ -43,6 +88,10 @@ function showDatosPersonales() {
 function showInfoCuenta() {
     document.getElementById('seccionDatosPersonales').style.display = 'none';
     document.getElementById('seccionInfoCuenta').style.display = 'block';
+}
+
+function showInicioSesion() {
+	window.location.href = 'Inicia-sesion.html';
 }
 
 document.addEventListener("DOMContentLoaded", function () { 
@@ -64,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function nextStep() { 
-		if (currentStep < progressListItems.length - 1) { 
+		if (currentStep < progressListItems.length - 1 && banderaDatosValidos===true) { 
 			currentStep++; 
 			updateProgress(); 
 		} 

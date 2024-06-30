@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Aquí se guarda el objeto del usuario logueado en localStorage
         localStorage.setItem('loggedInUser', JSON.stringify(user));
 
-        alert('Inicio de sesión exitoso');
         window.location.href = 'Turnos.html';
     });
 });
