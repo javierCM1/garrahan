@@ -45,6 +45,7 @@ function showPatientForm() {
 let tipoTurno;
 let paciente;
 let banderaTurnoGuardado=false;
+let banderaRequisitosTurno=false;
 
 function showConsultaForm() {
     document.getElementById('turnoForm').style.display = 'none';
@@ -93,8 +94,21 @@ function guardarNombrePaciente(idNombreRecibido, noSel1, noSel2) {
 function cerrarModal() {
 	$('#mensajeModal').hide();
     document.getElementById('seccionTurnos').classList.remove('backdrop');
-    if(banderaTurnoGuardado){
+    if(banderaTurnoGuardado && !banderaRequisitosTurno){
         window.location.href = 'Mis-Turnos.html'; // Redirigir a Mis Turnos después de guardar
+    }
+    if(banderaRequisitosTurno){
+        banderaRequisitosTurno = false;
+        $('#mensajeModal').show();
+            
+        document.getElementById('seccionTurnos').classList.add('backdrop');
+        document.getElementById('contenedorTituloModal').innerHTML=`
+                    <img src="./logos/tildeExito.png" alt="tildeExito" class="imagenModal" style="display: inline;">
+                    <h5 class="modal-title" id="txtModal">Turno registrado exitosamente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerrarModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>`;
+        document.getElementById('contenedorBodyModal').hidden=true;
     }
 }
 
@@ -116,7 +130,6 @@ function cambiarSeleccion(opcionSeleccionada, opcionNoSeleccionada1, opcionNoSel
     document.getElementById(opcionNoSeleccionada1).classList.remove("seleccionado");
     document.getElementById(opcionNoSeleccionada2).classList.remove("seleccionado");
     document.getElementById(opcionSeleccionada).classList.add("seleccionado");
-    let especialidad = document.getElementById('especialidad');
     
     if(opcionSeleccionada =='opcion-consulta')
         tipoTurno="Consulta médica";
@@ -163,6 +176,9 @@ function generarEspecialidades() {
         especialidad.appendChild(opcion4);
         especialidad.appendChild(opcion5);
         especialidad.appendChild(opcion6);
+
+        document.getElementById('modoDeAtencion').hidden = true;
+        document.getElementById('presencial').checked = true;
     }
     else if(tipoTurno == 'Laboratorio'){
         especialidad.innerHTML = '';
@@ -177,6 +193,44 @@ function generarEspecialidades() {
 
         especialidad.appendChild(opcion1);
         especialidad.appendChild(opcion2);
+
+        document.getElementById('modoDeAtencion').hidden = true;
+        document.getElementById('presencial').checked = true;
+    }
+    else{
+        document.getElementById('especialidad').innerHTML=`
+            <option value="Cardiologia">Cardiología</option>
+            <option value="Escoliosis">Escoliosis</option>
+            <option value="Oftalmologia">Oftalmología</option>
+            <option value="Traumatologia">Traumatología</option>
+            <option value="_separacion_">----- Nuevas especialidades -----</option>
+            <option value="Adolescencia">Adolescencia</option>
+            <option value="Cirugia general">Cirugía General</option>
+            <option value="Cirugia plastica">Cirugía Plástica</option>
+            <option value="Clinica">Clínica</option>
+            <option value="Clinica interdisciplinarias">Clínica Interdisciplinarias</option>
+            <option value="Crecimiento desarrollo">Crecimiento y Desarrollo</option>
+            <option value="Dermatologia">Dermatología</option>
+            <option value="Diabetes">Diabetes</option>
+            <option value="Endocrinologia">Endocrinología</option>
+            <option value="Endoscopia respiratoria">Endoscopia Respiratoria</option>
+            <option value="Gastroenterologia">Gastroenterología</option>
+            <option value="Genetica">Genética</option>
+            <option value="Ginecologia">Ginecología</option>
+            <option value="Hepatologia">Hepatología</option>
+            <option value="Infectologia">Infectología</option>
+            <option value="Inmunologia">Inmunología</option>
+            <option value="Intoxicaciones">Intoxicaciones</option>
+            <option value="Nefrologia">Nefrología</option>
+            <option value="Neumonologia">Neumonología</option>
+            <option value="Neurocirugia">Neurocirugía</option>
+            <option value="Neurologia">Neurología</option>
+            <option value="Nutricion">Nutrición</option>
+            <option value="Otorrinolaringologia">Otorrinolaringología</option>
+            <option value="Reumatologia">Reumatología</option>
+            <option value="Urologia">Urología</option>`;
+
+        document.getElementById('modoDeAtencion').hidden = false;
     }
 }
 
@@ -222,6 +276,10 @@ if (consultaForm) {
             motivo: document.getElementById('motivoConsulta').value,
             especialidad: document.getElementById('especialidad').value
         };
+
+        if(tipoTurno === 'Consulta médica'){
+            evaluarEspecialidad(document.getElementById('especialidad').value);
+        }
         
         let turnos = JSON.parse(localStorage.getItem('turnos')) || [];
         turnos.push(turno);
@@ -229,17 +287,46 @@ if (consultaForm) {
         
         banderaTurnoGuardado = true;
 
+        if(banderaTurnoGuardado && !banderaRequisitosTurno){
+            $('#mensajeModal').show();
+            
+            document.getElementById('seccionTurnos').classList.add('backdrop');
+            document.getElementById('contenedorTituloModal').innerHTML=`
+                        <img src="./logos/tildeExito.png" alt="tildeExito" class="imagenModal" style="display: inline;">
+                        <h5 class="modal-title" id="txtModal">Turno registrado exitosamente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerrarModal()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>`;
+            document.getElementById('contenedorBodyModal').hidden=true;
+        }
+    });
+}
+
+function findIndexfromOptionName( select, optionName ) {
+    let options = Array.from( select.options );
+    return options.findIndex( (opt) => opt.value == optionName );
+}
+
+function evaluarEspecialidad(especialidad) {
+    let espIndex = findIndexfromOptionName(document.getElementById('especialidad'), especialidad);
+    let separacionIndex = findIndexfromOptionName(document.getElementById('especialidad'), '_separacion_');
+
+    if(espIndex > separacionIndex){
+        banderaRequisitosTurno = true;
         $('#mensajeModal').show();
-        
+    
         document.getElementById('seccionTurnos').classList.add('backdrop');
         document.getElementById('contenedorTituloModal').innerHTML=`
-                    <img src="./logos/tildeExito.png" alt="tildeExito" class="imagenModal" style="display: inline;">
-                    <h5 class="modal-title" id="txtModal">Turno registrado exitosamente</h5>
+                    <img src="./logos/precaucion.png" alt="precaucion" class="imagenModal" style="display: inline;">
+                    <h5 class="modal-title" id="txtModal">Requisitos para confirmar el turno</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerrarModal()">
                         <span aria-hidden="true">&times;</span>
                     </button>`;
-        document.getElementById('contenedorBodyModal').hidden=true;
-    });
+        document.getElementById('contenedorBodyModal').innerHTML=`
+                    <h6>Antes de continuar es muy importante, para agilizar todo el proceso, que cuentes con:</h6>
+                    <p>Derivación de la o el pediatra, del centro de salud u hospital en el que se atiende el paciente, con el motivo de consulta en un hospital de alta complejidad.</p>
+                    <p>Resumen de Historia Clínica y estudios realizados hasta el momento</p>`;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () { 
