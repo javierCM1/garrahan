@@ -44,7 +44,7 @@ function loadTurnos() {
                 <div data-label="Nombre del Paciente">${turno.nombre}</div>
                 <div data-label="Especialidad">${turno.especialidad}</div>
                 <div data-label="Modo de Atención">${turno.modoAtencion}</div>
-                <div data-label=""><button class="cancel-button" onclick="cancelarTurno(${index})">Cancelar</button></div>
+                <div data-label=""><button class="cancel-button" onclick="mostrarModal(${index})">Cancelar</button></div>
             `;
             turnosList.appendChild(turnoRow);
         });
@@ -55,9 +55,24 @@ function loadTurnos() {
     }
 }
 
-function cancelarTurno(index) {
+let indexEliminar;
+
+function mostrarModal(index) {
+    $('#mensajeModal').show();
+    document.getElementById('seccionMisTurnos').classList.add('backdrop');
+    indexEliminar = index;
+}
+
+function cancelarTurno() {
     const turnos = JSON.parse(localStorage.getItem('turnos')) || [];
-    turnos.splice(index, 1);
+    turnos.splice(indexEliminar, 1);
     localStorage.setItem('turnos', JSON.stringify(turnos));
     loadTurnos(); // Actualizamos la lista de turnos
+    $('#mensajeModal').hide();
+    document.getElementById('seccionMisTurnos').classList.remove('backdrop');
+}
+
+function cerrarModal() {
+	$('#mensajeModal').hide();
+    document.getElementById('seccionMisTurnos').classList.remove('backdrop');
 }
