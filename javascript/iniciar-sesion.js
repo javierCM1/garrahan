@@ -8,12 +8,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const user = JSON.parse(localStorage.getItem(dni));
 
         if (!user) {
-            alert('Usuario no registrado');
+            $('#mensajeModal').show();
+            document.getElementById('seccionInicioSesion').classList.add('backdrop');
+            document.getElementById('txtModal').innerText='Usuario no registrado';
             return;
         }
 
         if (user.password !== password) {
-            alert('Contraseña incorrecta');
+            $('#mensajeModal').show();
+            document.getElementById('seccionInicioSesion').classList.add('backdrop');
+            document.getElementById('txtModal').innerText='Contraseña incorrecta';
             return;
         }
 
@@ -23,3 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'Turnos.html';
     });
 });
+
+function cerrarModal() {
+	$('#mensajeModal').hide();
+    document.getElementById('seccionInicioSesion').classList.remove('backdrop');
+}
