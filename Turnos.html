@@ -61,13 +61,13 @@
                 <form>
                     <div class="form-group">
                         <h2>¿Qué turno necesitás?</h2>
-                        <div class="form-row" style="display: flex; align-items: center; justify-content: center;">
+                        <div id="contenedorTipoTurno" class="form-row">
 
                             <div class="form-group col-sm-3">
                                 <button type="button" class="card-link btn" onclick="cambiarSeleccion('opcion-consulta', 'opcion-laboratorio', 'opcion-imagen')">
-                                    <div id="opcion-consulta" class="card card-turno" style="height: max-content;">
+                                    <div id="opcion-consulta" class="card card-turno">
                                         <div class="col-auto icono">
-                                            <img src="./logos/consulta-icono.png" alt="Agregar paciente" class="logo">
+                                            <img src="./logos/consulta-icono.png" alt="Agregar paciente" class="icono">
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">Consulta</h5>
@@ -78,9 +78,9 @@
 
                             <div class="form-group col-md-3">
                                 <button type="button" class="card-link btn" onclick="cambiarSeleccion('opcion-laboratorio', 'opcion-consulta', 'opcion-imagen')">
-                                    <div id="opcion-laboratorio" class="card card-turno" style="height: max-content;">
+                                    <div id="opcion-laboratorio" class="card card-turno">
                                         <div class="col-auto icono">
-                                            <img src="./logos/laboratorio-icono.png" alt="laboratorio-icono" class="logo">
+                                            <img src="./logos/laboratorio-icono.png" alt="laboratorio-icono" class="icono">
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">Laboratorio</h5>
@@ -91,9 +91,9 @@
 
                             <div class="form-group col-md-3">
                                 <button type="button" class="card-link btn" onclick="cambiarSeleccion('opcion-imagen', 'opcion-laboratorio', 'opcion-consulta')">
-                                    <div id="opcion-imagen" class="card card-turno" style="height: max-content;">
+                                    <div id="opcion-imagen" class="card card-turno">
                                         <div class="col-auto icono">
-                                            <img src="./logos/imagen-icono.png" alt="Agregar paciente" class="logo">
+                                            <img src="./logos/imagen-icono.png" alt="Agregar paciente" class="icono">
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">Imagen</h5>
@@ -104,17 +104,6 @@
 
                         </div>
                     </div>
-                    <!-- <div id="consultaOptions" style="display: none;">
-                        <div class="form-group">
-                            <label for="consultaType">¿Qué tipo de consulta necesitás?</label>
-                            <select class="form-control" id="consultaType" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="seguimiento">Seguimiento</option>
-                                <option value="nuevaEspecialidad">Nueva especialidad</option>
-                            </select>
-                        </div>
-                    </div> -->
-                    <!-- <button type="button" class="btn Continuar" onclick="showPatientForm()">Siguiente</button> -->
                     <div class="form-group text-center">
                         <button type="button" class="btn btn-nav Continuar" value="Continuar" onclick="showFamilyGroupForm()">Siguiente</button>
                     </div>
@@ -128,7 +117,7 @@
                 <form>
                     <div class="form-group">
                         <h2>El turno es para:</h2>
-                        <div class="form-row" style="display: flex; align-items: center; justify-content: center;">
+                        <div id="contenedorPacientes" class="form-row">
     
                             <div class="form-group col-md-2">
                                 <button type="button" class="card-link btn" onclick="guardarNombrePaciente('idNombre1','idNombre2','en_construccion')">
@@ -159,7 +148,7 @@
                                     <div id="en_construccion" class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">Agregar al grupo familiar</h5>
-                                            <img src="./logos/agregar_paciente.png" alt="Agregar paciente" class="logo">
+                                            <img src="./logos/agregar_paciente.png" alt="Agregar paciente" class="icono">
                                         </div>
                                     </div>
                                 </button>

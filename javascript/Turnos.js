@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			if (index === currentStep) { 
 				item.classList.add("active"); 
 			} else { 
-				item.classList.remove("active"); 
+				item.classList.remove("active");
 			} 
 		}); 
 	} 

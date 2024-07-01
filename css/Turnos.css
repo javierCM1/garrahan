@@ -88,6 +88,7 @@ button.btn-primary {
 
 .card-turno{
     width: 12em;
+    height: max-content;
 }
 
 .seleccionado {
@@ -174,14 +175,76 @@ button.btn-primary {
     margin-left: 0.5em;
 }
 
+#contenedorTipoTurno {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#contenedorPacientes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icono {
+    max-height: 80px;
+    margin-top: 10px; 
+    margin-bottom: 10px;  
+}
+
 @media (max-width: 768px) {
     .header-title h2 {
         font-size: 20px;
     }
 }
 
-@media (max-width: 610px) {
-    .turno-row {
+@media (max-width: 992px) {
+    #contenedorTipoTurno {
+        display: grid;
+        grid-row: 11em 11em 11em;
+    }
+
+    #contenedorPacientes {
+        display: grid;
+        grid-row: 11em 11em 11em;
+    }
+
+    .card {
+        width: 16em;
+        height: 10em;
+    }
+
+    .card-body{
+        display: inline;
+    }
+
+    .icono {
+        max-height: 60px;
+        margin-top: 6px; 
+        margin-bottom: 6px; 
+    }
+
+    #progressbar { 
+        list-style-type: none; 
+        display: flex; 
+        justify-content: center; 
+        color: lightgrey; 
+    }
+
+    #progressbar li {
+        display: none;
+    }
+
+    #progressbar li.active { 
+        display: block;
+        position: relative; 
+        flex: 1; 
+        text-align: center; 
+        font-size: 1em;
+    }
+
+    /* .turno-row {
         flex-direction: column;
         text-align: left;
     }
@@ -213,5 +276,5 @@ button.btn-primary {
 
     .turno-row div:nth-child(odd) {
         background-color: #fff;
-    }
+    } */
 }
