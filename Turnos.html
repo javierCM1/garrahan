@@ -131,69 +131,57 @@
             </div>
         </div>
 
-          
-         <!--Nuevo Codigo-->
-<!--PACIENTES-->
-<div class="row" id="pacientesForm" style="display: none;">
-    <div class="col-12">
-        <form>
-            <div class="form-group">
-                <h2>El turno es para:</h2>
-                <div id="pacientes-container" class="form-row" style="display: flex; align-items: center; justify-content: center;">
-                    <!-- Los pacientes se cargarán aquí dinámicamente -->
-                </div>
+        <!--GRUPO FAMILIAR-->
+        <div class="row" id="grupoFamiliarForm" style="display: none;">
+            <div class="col-12">
+                <form>
+                    <div class="form-group">
+                        <h2>El turno es para:</h2>
+                        <div id="contenedorPacientes" class="form-row">
+    
+                            <div class="form-group col-md-2">
+                                <button type="button" class="card-link btn" onclick="guardarNombrePaciente('idNombre1','idNombre2','en_construccion')">
+                                    <div id="idNombre1" class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">González, Julián</h5>
+                                            <p class="card-text">D.N.I 48.159.753</p>
+                                            <p class="card-text">Historia clínica 529.716</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                      
+                            <div class="form-group col-md-2">
+                                <button type="button" class="card-link btn" onclick="guardarNombrePaciente('idNombre2','idNombre1','en_construccion')">
+                                    <div id="idNombre2" class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">González, Julieta</h5>
+                                            <p class="card-text">D.N.I 50.861.249</p>
+                                            <p class="card-text">Historia clínica 681.933</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+    
+                            <div class="form-group col-md-2">
+                                <button type="button" class="card-link btn" onclick="guardarNombrePaciente('en_construccion','idNombre2','idNombre1')">
+                                    <div id="en_construccion" class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Agregar al grupo familiar</h5>
+                                            <img src="./logos/agregar_paciente.png" alt="Agregar paciente" class="icono">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-nav atras" value="Atras" onclick="showTurnoForm()">Atrás</button>
+                        <button type="button" class="btn btn-nav Continuar" value="Continuar" onclick="showConsultaForm()">Siguiente</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group text-center">
-                <button type="button" class="btn btn-nav atras" value="Atras" onclick="showTurnoForm()">Atrás</button>
-                <button type="button" class="btn btn-nav Continuar" value="Continuar" onclick="showConsultaForm()" id="continuarBtn" disabled>Siguiente</button>
-                <button type="button" class="btn btn-nav" onclick="mostrarFormularioPaciente()">Agregar Paciente</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!--FORM PACIENTE-->
-<div class="row" id="patientForm" style="display: none;">
-    <div class="col-12">
-        <h2>Datos del Paciente:</h2>
-        <form id="formPaciente">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="nombre">Apellidos, Nombres</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="Apellidos, Nombres" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="dni">D.N.I.</label>
-                    <input type="number" class="form-control" id="dni" placeholder="Número de documento" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="historia">Nro. Historia clínica</label>
-                    <input type="text" class="form-control" id="historia" placeholder="Nro. Historia clínica" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" id="fechaNacimiento" placeholder="Día/Mes/Año">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="direccion">Dirección</label>
-                    <input type="text" class="form-control" id="direccion" placeholder="Dirección">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="telefono">Teléfono</label>
-                    <input type="text" class="form-control" id="telefono" placeholder="Teléfono">
-                </div>
-            </div>
-            <div class="form-group text-center">
-                <button type="button" class="btn btn-nav atras" value="Atras" onclick="mostrarFormularioPacientes()">Atrás</button>
-                <button type="button" class="btn btn-nav Continuar" onclick="guardarPaciente()">Guardar Paciente</button>
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
 
         <!--CONSULTA-->
         <div class="row" id="consultaForm" style="display: none;">
