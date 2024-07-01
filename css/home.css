@@ -145,10 +145,15 @@
 }
 
 .header {
-    background: url('/imagenes/header-background.png') no-repeat center center;
-    background-size: cover;
+    background-image: url('../imagenes/header-background.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 50%;
+    background-position-y: 10%;
     color: white;
-    padding: 100px 0;
+    padding: 10em 0;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.6);
+    
 }
 
 .header h1 {
@@ -282,12 +287,29 @@ a {
     }
 
    .conten-ink {
-     display: none;
+        display: none;
    }
 
    .con-redes {
-     display: flex;
-     justify-content: center;
+        display: flex;
+        justify-content: center;
    }
+
+   .header {
+        background-image: url('../imagenes/header-background.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: 50%;
+        background-position-y: 10%;
+        color: white;
+        padding: 6em 0;
+        box-shadow: inset 0 0 0 1000px rgba(0,0,0,.6);
+        
+    }
+
+    .header h1 {
+        font-size: 1.5em;
+        margin: 0;
+    }
 
 }

@@ -1,3 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.social-media-bar {
+    background-color: #6a1b9a;
+    color: white;
+    padding: 10px 0;
+}
+
+.social-media-bar .social-icon {
+    color: white;
+    margin: 0 10px;
+    font-size: .9em;
+}
+
+.containerRedes {
+    max-width: 1500px;
+    width: 100%; 
+    padding: 0 15px; 
+}
+
+.conten-ink {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.link-secu {
+    margin: 10px;
+    color: #fff;
+    text-decoration: none;
+    
+}
+
+.link-secu:hover {
+    color: #fff;
+}
+
+.con-redes {
+    display: flex;
+    justify-content: space-between;
+}
+
 .header-title {
     display: flex;
     align-items: center;
@@ -148,4 +193,20 @@ button.btn-link {
     .turno-row div:nth-child(odd) {
         background-color: #fff;
     }
+}
+
+@media (max-width: 630px) {
+    .container.my-3 .row {
+        justify-content: center !important; /* Centrar los elementos en la fila */
+        text-align: center; /* Asegurar que los elementos estén centrados */
+    }
+
+   .conten-ink {
+        display: none;
+   }
+
+   .con-redes {
+        display: flex;
+        justify-content: center;
+   }
 }

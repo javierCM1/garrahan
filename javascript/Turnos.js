@@ -1,47 +1,3 @@
-/*function toggleTurnoOptions() {
-    const turnoType = document.getElementById('turnoType').value;
-    const consultaOptions = document.getElementById('consultaOptions');
-    
-    if (turnoType === 'consulta') {
-        consultaOptions.style.display = 'block';
-    } else {
-        consultaOptions.style.display = 'none';
-    }
-}
-
-function showPatientForm() {
-    if (document.getElementById('turnoType').value === '' ||
-        (document.getElementById('turnoType').value === 'consulta' && document.getElementById('consultaType').value === '')) {
-        alert("Por favor, complete todos los campos obligatorios.");
-        return;
-    }
-    document.getElementById('turnoForm').style.display = 'none';
-    document.getElementById('consultaForm').style.display = 'none'; // Ocultar la sección de consulta si estaba visible
-    document.getElementById('patientForm').style.display = 'block';
-}
-
-function showConsultaForm() {
-    if (document.getElementById('nombre').value === '' ||
-        document.getElementById('dni').value === '' ||
-        document.getElementById('historia').value === '' ||
-        document.getElementById('fechaNacimiento').value === '' ||
-        document.getElementById('provincia').value === '' ||
-        document.getElementById('localidad').value === '' ||
-        document.getElementById('telefono1').value === '' ||
-        document.getElementById('email').value === '') {
-        alert("Por favor, complete todos los campos obligatorios.");
-        return;
-    }
-    document.getElementById('patientForm').style.display = 'none';
-    document.getElementById('turnoForm').style.display = 'none'; // Ocultar la sección de turno si estaba visible
-    document.getElementById('consultaForm').style.display = 'block';
-}
-
-function showPatientForm() {
-    document.getElementById('grupoFamiliarForm').style.display = 'none';
-    document.getElementById('patientForm').style.display = 'block';
-}*/
-
 let tipoTurno;
 let paciente;
 let banderaTurnoGuardado=false;
@@ -66,9 +22,9 @@ function guardarNombrePaciente(idNombreRecibido, noSel1, noSel2) {
     let id = document.getElementById(idNombreRecibido).id;
 
     if(id == 'idNombre1'){
-        paciente='Apellido, Nombre1';
+        paciente='González, Julián';
     }else if(id == 'idNombre2'){
-        paciente='Apellido, Nombre2';
+        paciente='González, Julieta';
     }else{
         paciente='en_construccion';
 
@@ -346,18 +302,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			} 
 		}); 
 	} 
-
-	// function showStep(stepIndex) { 
-	// 	const steps = 
-	// 		document.querySelectorAll(".step-container fieldset"); 
-	// 	steps.forEach((step, index) => { 
-	// 		if (index === stepIndex) { 
-	// 			step.style.display = "block"; 
-	// 		} else { 
-	// 			step.style.display = "none"; 
-	// 		} 
-	// 	}); 
-	// } 
 
 	function nextStep() { 
 		if (currentStep < progressListItems.length - 1) { 
