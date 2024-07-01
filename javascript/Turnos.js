@@ -71,7 +71,7 @@ function cerrarModal() {
 function showFamilyGroupForm() {
     document.getElementById('turnoForm').style.display = 'none';
     document.getElementById('consultaForm').style.display = 'none';
-    document.getElementById('grupoFamiliarForm').style.display = 'block';
+    document.getElementById('pacientesForm').style.display = 'block';
 
     generarEspecialidades();
 }
@@ -227,7 +227,7 @@ if (consultaForm) {
             fecha: document.getElementById('fechaConsulta').value,
             hora: document.getElementById('horaConsulta').value,
             numeroDeTurno: Math.floor(Math.random() * 1000000), // Número de turno aleatorio
-            nombre: paciente,
+            nombre: document.getElementById('nombre').value,
             modoAtencion: document.querySelector('input[name="modoAtencion"]:checked').value,
             motivo: document.getElementById('motivoConsulta').value,
             especialidad: document.getElementById('especialidad').value
@@ -330,3 +330,107 @@ document.addEventListener("DOMContentLoaded", function () {
 		button.addEventListener("click", prevStep); 
 	}); 
 });
+
+
+
+
+
+
+
+
+
+let pacientes = JSON.parse(sessionStorage.getItem('pacientes')) || [];
+let pacienteSeleccionado = null;
+
+function mostrarFormularioPaciente() {
+    document.getElementById('pacientesForm').style.display = 'none';
+    document.getElementById('patientForm').style.display = 'block';
+}
+
+function guardarPaciente() {
+    const nombre = document.getElementById('nombre').value;
+    const dni = document.getElementById('dni').value;
+    const historia = document.getElementById('historia').value;
+    const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+    const direccion = document.getElementById('direccion').value;
+    const telefono = document.getElementById('telefono').value;
+
+    const nuevoPaciente = {
+        nombre,
+        dni,
+        historia,
+        fechaNacimiento,
+        direccion,
+        telefono
+    };
+
+    pacientes.push(nuevoPaciente);
+    sessionStorage.setItem('pacientes', JSON.stringify(pacientes));
+    actualizarListaPacientes();
+    document.getElementById('patientForm').style.display = 'none';
+    document.getElementById('pacientesForm').style.display = 'block';
+}
+
+function actualizarListaPacientes() {
+    const container = document.getElementById('pacientes-container');
+    container.innerHTML = '';
+
+    if (pacientes.length === 0) {
+        container.innerHTML = '<p>No tienes pacientes registrados. Por favor, agrega uno.</p>';
+    } else {
+        pacientes.forEach((paciente, index) => {
+            const pacienteCard = document.createElement('div');
+            pacienteCard.className = 'form-group col-md-2';
+            pacienteCard.innerHTML = `
+                <button type="button" class="card-link btn" onclick="guardarNombrePaciente('paciente-${index}')">
+                    <div id="paciente-${index}" class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${paciente.nombre}</h5>
+                            <p class="card-text">${paciente.dni}</p>
+                            <p class="card-text">Historia clínica ${paciente.historia}</p>
+                        </div>
+                    </div>
+                </button>
+            `;
+            container.appendChild(pacienteCard);
+        });
+    }
+}
+
+function eliminarPaciente(index) {
+    pacientes.splice(index, 1);
+    sessionStorage.setItem('pacientes', JSON.stringify(pacientes));
+    actualizarListaPacientes();
+}
+
+function guardarNombrePaciente(idNombreRecibido) {
+    const index = parseInt(idNombreRecibido.split('-')[1], 10);
+    pacienteSeleccionado = pacientes[index];
+    document.getElementById('continuarBtn').disabled = false;
+}
+
+function showTurnoForm() {
+    document.getElementById('turnoForm').style.display = 'block';
+    document.getElementById('pacientesForm').style.display = 'none';
+    document.getElementById('consultaForm').style.display = 'none';
+}
+
+function showConsultaForm() {
+    if (pacienteSeleccionado) {
+        document.getElementById('turnoForm').style.display = 'none';
+        document.getElementById('pacientesForm').style.display = 'none';
+        document.getElementById('consultaForm').style.display = 'block';
+    } else {
+        alert('Por favor, seleccione un paciente.');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    actualizarListaPacientes();
+});
+
+function mostrarFormularioPacientes() {
+    document.getElementById('pacientesForm').style.display = 'block';
+    document.getElementById('patientForm').style.display = 'none';
+  
+}
